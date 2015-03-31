@@ -2,13 +2,15 @@ package batchLaunchApplication;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class LaunchBrowser {
 	public static int ROW_COUNT =1;
@@ -20,14 +22,15 @@ public class LaunchBrowser {
 	public static void main(String[] args) throws InvalidFormatException, IOException, NullPointerException {
 		
 		//CODE TO READ VALUES FROM EXCEL FILE
-		FileInputStream inputFile = new FileInputStream("C:\\ExcelTest\\JavaReadValues.xlsx");
+		//FileInputStream inputFile = new FileInputStream("..\\Resources\\JavaReadValues.xlsx");
+		FileInputStream inputFile = new FileInputStream("C:\\Users\\anupam.ahlawat\\git\\LoginApplication\\LoginApplication\\Resources\\JavaReadValues.xlsx");
 		Workbook wb = WorkbookFactory.create(inputFile);
 		Sheet sheet = wb.getSheet("LoginInformation");
 		MAX_ROW_COUNT = sheet.getLastRowNum();
 		ReadExcel readExcel = new ReadExcel();
 		
 		//INITIALIZING IE WEBDRIVER
-		System.setProperty("webdriver.ie.driver", "C:\\Professional\\Selenium\\Installers\\IEDriverServer_x64_2.45.0\\IEDriverServer.exe");
+		System.setProperty("webdriver.ie.driver", "C:\\Users\\anupam.ahlawat\\git\\LoginApplication\\LoginApplication\\Resources\\IEDriverServer.exe");
 		
 		for( int i=0; i<MAX_ROW_COUNT; i++){
 			String link = readExcel.getLink(sheet, ROW_COUNT);
